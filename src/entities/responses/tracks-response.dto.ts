@@ -1,22 +1,18 @@
 import { Type } from 'class-transformer';
-import {
-  IsArray,
-  IsNumber,
-  IsString,
-} from 'class-validator';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 export class TracksResponseDto {
-    @IsNumber()
-    readonly total_albumes : number;
-    @IsNumber()
-    readonly total_canciones : number;
-    @IsString()
-    @IsArray()
-    readonly albumes : string[];
+  @IsNumber()
+  readonly total_albumes: number;
+  @IsNumber()
+  readonly total_canciones: number;
+  @IsString()
+  @IsArray()
+  readonly albumes: string[];
 
-    @IsArray()
-    @Type(() => SongDto)
-    readonly canciones : SongDto[];
+  @IsArray()
+  @Type(() => SongDto)
+  readonly canciones: SongDto[];
 }
 
 export class SongDto {
@@ -37,13 +33,12 @@ export class SongDto {
 
   @Type(() => PriceSongDto)
   readonly precio: PriceSongDto;
-
 }
 
 export class PriceSongDto {
-    @IsNumber()
-    readonly valor: number;
-    
-    @IsString()
-    readonly moneda: string;
+  @IsNumber()
+  readonly valor: number;
+
+  @IsString()
+  readonly moneda: string;
 }

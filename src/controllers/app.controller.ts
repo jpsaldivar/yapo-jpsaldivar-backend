@@ -1,4 +1,11 @@
-import { BadRequestException, Controller, Get, HttpCode, HttpStatus, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Query,
+} from '@nestjs/common';
 import { AppService } from '../services/app.service';
 
 @Controller('/')
@@ -13,10 +20,10 @@ export class AppController {
   @Get('/search_tracks')
   @HttpCode(HttpStatus.OK)
   getTracks(@Query('name') bandName: string): any {
-    if(bandName === undefined || bandName === null || bandName === ''){
+    if (bandName === undefined || bandName === null || bandName === '') {
       throw new BadRequestException({
-        message: 'Param name is required'
-      })
+        message: 'Param name is required',
+      });
     }
     return this.appService.getThemes(bandName);
   }
