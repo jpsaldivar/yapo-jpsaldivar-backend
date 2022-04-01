@@ -102,11 +102,13 @@ export class AppService {
 
       const albums: string[] = [];
       const songs: SongDto[] = [];
+      let i = 0;
       elements.every((item) => {
         if (item.artistName === bandName) {
+          i++;
           albums.push(item.collectionName);
           songs.push({
-            cancion_id: item.collectionId,
+            cancion_id: `${item.collectionId}-${i}`,
             nombre_album: item.collectionName,
             nombre_tema: item.trackName,
             preview_url: item.previewUrl,
