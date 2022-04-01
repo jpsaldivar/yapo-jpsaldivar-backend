@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+import { SongDto, TracksResponseDto } from '../entities/responses/tracks-response.dto';
 
 @Injectable()
 export class AppService {
@@ -10,7 +11,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async getThemes(bandName: string) : Promise<any>{
+  async getThemes(bandName: string) : Promise<TracksResponseDto>{
 
     try{
 
@@ -19,8 +20,8 @@ export class AppService {
       const query = await firstValueFrom( this.http.get(queryUrl));
       const elements = query?.data?.results;
 
-      const albums : any[] = [];
-      const songs : any[] = [];
+      const albums : string[] = [];
+      const songs : SongDto[] = [];
       elements.every(item => {
         if(item.artistName === bandName){
           albums.push(item.collectionName);
@@ -30,9 +31,12 @@ export class AppService {
               'nombre_album': item.collectionName,
               'nombre_tema': item.trackName,
               'preview_url' : item.previewUrl,
-              'fecha_lanzamiento': item.releaseDate
-
-            }
+              'fecha_lanzamiento': item.releaseDate,
+              'precio': {
+                'valor': item.collectionPrice,
+                'moneda': item.currency
+              }
+            } 
           );
         }
         if(songs.length >= 25){
@@ -48,9 +52,9 @@ export class AppService {
         'total_canciones': songs.length,
         'albumes': uniqueAlbums,
         'canciones': songs
-      };
+      } as TracksResponseDto;
 
-      return { response };
+      return response;
 
     }catch(e){
       throw new BadRequestException({
