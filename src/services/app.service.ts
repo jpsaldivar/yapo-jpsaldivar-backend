@@ -82,7 +82,7 @@ export class AppService {
   async getThemes(bandName: string): Promise<TracksResponseDto> {
     try {
       //First get form cache
-      /*const element = await this.getFromCache(bandName);
+      const element = await this.getFromCache(bandName);
       if (
         element &&
         element !== undefined &&
@@ -91,7 +91,7 @@ export class AppService {
       ) {
         console.log('Exist in cache');
         return element as TracksResponseDto;
-      }*/
+      }
 
       //If not in cache, get from API
       const url = 'https://itunes.apple.com/search';
@@ -135,7 +135,7 @@ export class AppService {
         canciones: songs,
       } as TracksResponseDto;
 
-      //this.addToCache(bandName, response);
+      this.addToCache(bandName, response);
 
       return response;
     } catch (e) {
