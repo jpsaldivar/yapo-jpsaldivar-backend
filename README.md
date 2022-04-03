@@ -2,7 +2,12 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este proyecto se encuentra desarrollado sobre NestJS, utiliza Redis para almacenamiento de Cache. No ocupa base de datos.
+
+Dependencias:
+- Redislab (cache)
+- Husky: precommit validation
+- Jest: Unit testing
 
 ## Installation
 
