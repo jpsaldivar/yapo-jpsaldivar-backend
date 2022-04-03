@@ -47,6 +47,10 @@ $ npm run start:dev
 $ yarn test
 ```
 
+## Accesos
+
+API disponible en localhost:3000
+
 ## Escalamiento y deployments
 
 ### ¿Qué factores considerarías para decidir si esta API la deberías instalar en una infraestructura gestionada tipo Kubernetes o instalarla en un componente serverless tipo CloudRun ( o fargate)
