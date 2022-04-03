@@ -79,10 +79,20 @@ Idea de pipeline de alto nivel
 
 ### ¿Qué componentes usarías para securitizar la exposición de tu API?. 
 
-Al trabajar sobre un sistema 
+Si trabaja sobre microservicios, cada POD no debe estar expuesto a internet sino que se accede mediante un ingress que puede estar sobre algun Api Manager como Kong o un gestor de API con API Gateway (más básico). 
+
+Antes de ingresar al sistema debe considerar:
+- Solicitud filtrada por un WAF 
+- Recibir un usuario autenticado (Ejemplo JWT valido), ya sea usuario persona real logueada o usuario sistema para solicitudes "públicas"
+- Validar cantidad de solicitudes esperadas vs solicitudes reales (Limitar)
+
 
 ### ¿Cómo asegurarías la seguridad de tu API desde el ciclo de vida de desarrollo?
-
+Si consideramos acceso siempre para usuarios logueados
+- Validación de headers (Ejemplo authorization)
+- En base a header obtener información del usuario
+- Configurar cada API con requerimientos de permisos especificos (Ejemplo permiso para obtener canciones)
+- Obtener perfilamiento de usuario para considerar si cuenta con permiso de acceder a API 
 
 ## Diagrama de componentes
 
