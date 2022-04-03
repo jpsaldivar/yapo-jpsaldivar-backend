@@ -64,7 +64,7 @@ export class AppService {
             console.log(
               `Error set to cache ${JSON.stringify(
                 error.response?.data ? error.response.data : error,
-              )}`
+              )}`,
             );
           }
         },
@@ -136,7 +136,7 @@ export class AppService {
       } as TracksResponseDto;
 
       this.addToCache(bandName, response);
-      console.log("Add to cache");
+      console.log('Add to cache');
       return response;
     } catch (e) {
       console.log(e);
